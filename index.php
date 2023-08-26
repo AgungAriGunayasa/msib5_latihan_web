@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Agung Ari Gunayasa">
+    <title>Hitung Nilai Rata-Rata</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
+    <style>
+    	body {
+        	background-color: #f2f2f2;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        
+        .container {
+            max-width: 400px;
+            margin: 10px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        th {
+            text-align: center;
+            font-size: 15px;
+        }
+    </style>
+</head>
+
+<body class="body">
+    <div class="container">
+        <h2 align="center">Hitung Nilai Rata-Rata</h2><hr>
+        <form id="gradeForm">
+            <label for="name" class="form-label">Nama:</label>
+            <input class="form-control" type="text" id="name" placeholder="Masukkan Nama" required><br>
+
+            <label for="course" class="form-label">Mata Kuliah:</label>
+            <input class="form-control" type="text" id="course" placeholder="Masukkan Mata Kuliah" required><br>
+
+            <label for="grade" class="form-label">Grade:</label>
+            <select class="form-select" id="grade">
+                <option value="" selected>Pilih Grade</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+                <option value="E">E</option>
+            </select><br>
+
+            <button type="button" onclick="calculateAverage()" class="btn btn-primary">Hitung</button>
+        </form><br>
+
+        <table id="resultTable" class="table table-bordered table-striped rounded overflow-hidden">
+            <tr>
+                <th>Nama</th>
+                <th>Mata Kuliah</th>
+                <th>Grade</th>
+                <th>Nilai Rata-Rata</th>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        function calculateAverage() {
+            const gradeValues = { A: 4, B: 3, C: 2, D: 1, E: 0 };
+            const name = document.getElementById("name").value;
+            const course = document.getElementById("course").value;
+            const selectedGrade = document.getElementById("grade").value;
+
+            if (selectedGrade in gradeValues) {
+
+                // Validasi Data
+                if (name == "" || name == null || course == "" || course == null) {
+                    alert("Data Nama & Mata Kuliah Harus Diisi!");
+                    return false;
+                }
+                else {
+                    const gradeValue = gradeValues[selectedGrade];
+                    const resultElement = document.getElementById("resultTable");
+                    const totalGradeValues = gradeValue;
+                    const average = totalGradeValues / 1;
+
+                    const newRow = resultTable.insertRow(-1);
+                    newRow.insertCell(0).innerHTML = name;
+                    newRow.insertCell(1).innerHTML = course;
+                    newRow.insertCell(2).innerHTML = selectedGrade;
+                    newRow.insertCell(3).innerHTML = average.toFixed(2);
+                }
+            }
+            else {
+                alert("Pilih Grade Dengan Benar!");
+            }
+        }
+    </script>
+</body>
+</html>
